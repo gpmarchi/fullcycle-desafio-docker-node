@@ -26,6 +26,9 @@ services:
       - "8080:80"
     networks:
       - mynet
+    entrypoint: dockerize -wait tcp://fullcycle_docker_node:3000 -timeout 20s nginx -g 'daemon off;'
+    depends_on:
+      - node
 
   mysql:
     image: mysql:5.7
